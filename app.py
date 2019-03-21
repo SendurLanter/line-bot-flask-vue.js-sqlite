@@ -236,10 +236,22 @@ def backend():
 
     #負責建立group                    
     elif req['source'] == 'group':
-        c.execute("INSERT INTO groups (name) VALUES ('%s')"%(req['group_name']))
+        exist=False
+        for e in c.execute("SELECT * FROM groups"):
+            if e[0]==req['group_name']:
+                exist=True
+                break
+        if not exist:
+            c.execute("INSERT INTO groups (name) VALUES ('%s')"%(req['group_name']))
     #負責新增使用者進入group
     elif req['source'] == 'edit':
-        c.execute("INSERT INTO group_person (person,group_name) VALUES ('%s','%s')"%(req['user'],req['group_name']['description']))
+        exist=False
+        for e in c.execute("SELECT * FROM group_person"):
+            if e[0]==req['user']:
+                exist=True
+                break
+        if not exist:
+            c.execute("INSERT INTO group_person (person,group_name) VALUES ('%s','%s')"%(req['user'],req['group_name']['description']))
 
     conn.commit()
     conn.close()
@@ -268,8 +280,8 @@ def callback():
         exist=False
 
         #新使用者輸入進資料庫
-        for e in c.execute("SELECT userid FROM permission"):
-            if userid == e:
+        for e in c.execute("SELECT * FROM permission"):
+            if userid == e[1]:
                 exist=True
                 break
 
