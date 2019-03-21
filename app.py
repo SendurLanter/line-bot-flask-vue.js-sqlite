@@ -227,10 +227,10 @@ def backend():
 
     #負責推播訊息,
     elif req['source'] == 'push':
+        nest=conn.cursor()
         for e in c.execute("SELECT * FROM group_person"):
             if e[1]==req['target']['description']:
-                print('hit')
-                for d in c.execute("SELECT * FROM permission"):
+                for d in nest.execute("SELECT * FROM permission"):
                     if e[0]==d[0]:
                         line_bot_api.push_message(d[1], TextSendMessage(text=req['message']))
 
@@ -291,9 +291,8 @@ def callback():
             print(profile.display_name)
             c.execute("INSERT INTO permission (name,userid) VALUES ('%s','%s')"%(profile.display_name,userid))
 
-
-        if event.message.text == "貼圖":
-            line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=1, sticker_id=2))
+        #if event.message.text == "貼圖":
+        #    line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=1, sticker_id=2))
         
         #keyword parse
         for e in c.execute("SELECT * FROM kr"):
@@ -304,8 +303,9 @@ def callback():
         for e in c.execute("SELECT * FROM hierachy" ):
             #找關鍵字
             if event.message.text == e[0]:
+                nest=conn.cursor()
                 #找關鍵字對應的mene id
-                for d in c.execute("SELECT * FROM menuid "):
+                for d in nest.execute("SELECT * FROM menuid "):
                     #抽換menu
                     if e[1] == d[0]:
                         print('fit')
