@@ -1,0 +1,21 @@
+{
+    "size": {"width": 2500, "height": 1686},
+    "selected": "true",
+    "name": "menu_1",
+    "chatBarText": "menu_1",
+    "areas":[
+        {
+          "bounds": {"x": 430, "y": 370, "width": 400, "height": 350},
+          "action": {"type": "message", "text": "circle"}
+        },
+        {
+          "bounds": {"x": 1234, "y": 1324, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "this"}
+        },
+        {
+          "bounds": {"x": 2010, "y": 440, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "here"}
+        },
+        
+    ]
+}

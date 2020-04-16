@@ -1,0 +1,1 @@
+{'source': 'menu', 'name': 'test3', 'buttom1': {'type': 'message', 'action': '3to1'}, 'buttom2': {'type': 'message', 'action': '3to2'}, 'buttom3': {'type': 'message', 'action': '3to3'}, 'buttom4': {'type': 'message', 'action': 'nothing'}, 'buttom5': {'type': 'uri', 'action': 'https://my.ntu.edu.tw/'}, 'buttom6': {'type': 'uri', 'action': 'https://my.ntu.edu.tw/'}}
